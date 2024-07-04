@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CryptMail</title>
+
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CryptMail.styles.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+
+
+<body>
+
+    <script src="~/js/jquery.js"></script>
+
+    <header>
+        <div class="logo">CRYPTMail</div>
+        <nav>
+            <ul>
+                @if (ViewContext.RouteData.Values["controller"].ToString() == "Mail")
+                {
+                    <li><a asp-controller="Mail" asp-action="LogOut"><i class='bx bx-log-out-circle'></i></a></li>
+                }
+                <li><a asp-controller="Auth" asp-action="checkCookie" id="home-button-id"><i class='bx bx-home'></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+<<<<<<< HEAD
+        
+            @RenderBody()
+=======
+
+        @RenderBody()
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+    </div>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

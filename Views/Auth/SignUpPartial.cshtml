@@ -1,0 +1,41 @@
+﻿<div class="wrapper" id="wrapper-id-up">
+    <form id="auth-up-form-id" asp-action="CreateUser" method="post">
+        <h1>Sign Up</h1>
+
+        <div class="input-box">
+            <input type="text" placeholder="Username" name="username" required autocomplete="off" />
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" name="pass1" required />
+            <i class='bx bx-lock'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Repeat password" name="pass2" required />
+            <i class='bx bx-repeat'></i>
+        </div>
+
+        <div>
+
+            @if (TempData["SignUpErr"] != null)
+            {
+                <p style="color: red">@TempData["SignUpErr"]</p>
+                <br />
+            }
+            @if (TempData["UserCreatedSuccess"] != null)
+            {
+                <p style="color: green">@TempData["UserCreatedSuccess"]</p>
+                <br />
+            }
+
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <div class="register-link">
+        <p>
+            <a id="register-button-id" style="cursor: pointer"></a>
+        </p>
+    </div>
+</div>

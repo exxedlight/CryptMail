@@ -1,0 +1,46 @@
+﻿@model NewMessageModel;
+
+<form class="new-message-form" id="new-message-form-id" asp-action="sendNewMessageChat" method="post">
+
+    <p style="color: rgba(255,255,255, .6); text-align: right;">New message</p>
+
+    <div>
+        @if (Model.onFormMessage != null)
+        {
+            <p style="color: @Model.onFormMessageColor; text-align: center; font-size: 14px;" id="error-message">@Model.onFormMessage</p>
+        }
+    </div>
+
+    <!-- MESSAGE DATA -->
+    <div class="write-message-content-container">
+        <input type="text" style="display: none" value="@Model.PartnerLogin" asp-for="PartnerLogin" id="partner" />
+        <input type="text" style="display: @(Model.PartnerLogin == null ? "flex" : "none")" class="new-message-reciever-title" placeholder="recciever@crypt.com" autocomplete="off" required value="@Model.PartnerLogin" asp-for="recieverLogin" />
+        <input type="text" class="new-message-reciever-title" placeholder="Message theme" autocomplete="off" required value=@Model.Theme asp-for="Theme" />
+        <textarea class="new-message-text-content" placeholder="Type your message here..." asp-for="Message" required>"@Model.Message.ToString()"</textarea>
+    </div>
+
+    <!-- MESSAGE CONTROL -->
+    <div class="write-message-settings-container">
+
+        
+        <select name="alg" title="Algorithm" data-val="true" asp-for="alg">
+            <option value="1">algorithm 1</option>
+            <option value="2">algorithm 2</option>
+            <option value="3">algorithm 3</option>
+        </select>
+
+        <input type="text" name="key" placeholder="Key..." data-val="true" asp-for="key" autocomplete="off" />
+        
+        @if (Model.PartnerLogin != null)
+        {
+            <p class="decrButton" id="decrButtonId">
+                <a style="cursor: pointer;" id="decode-button">
+                Decode
+                </a>
+            </p>
+        }
+        
+        <button type="submit"><p>Send</p></button>
+    </div>
+
+</form>

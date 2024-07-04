@@ -1,0 +1,222 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Jaro:opsz@6..72&family=Oswald:wght@200..700&family=Permanent+Marker&display=swap');
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 95%;
+    border-top: 2px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: none;
+    backdrop-filter: brightness(50%);
+}
+<<<<<<< HEAD
+    .wrapper .butt{
+=======
+
+    .wrapper .butt {
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+        align-self: center;
+        text-decoration: none;
+        border: 3px solid black;
+        margin-top: 20px;
+        width: 50%;
+<<<<<<< HEAD
+        text-align:center;
+=======
+        text-align: center;
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+        color: white;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: large;
+        font-weight: bold;
+        background: rgba(255, 255, 255, .7);
+        color: black;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,255,120,.4);
+    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+        .wrapper .butt:hover {
+            cursor: pointer;
+            background: rgba(0,0,0,.5);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(0,255,120,.3);
+            animation: shine ease-in-out 2s infinite;
+        }
+<<<<<<< HEAD
+        @keyframes shine{
+            50% {
+                box-shadow: 0 10px 70px rgba(0,255,120,.3);
+                text-shadow: 0 0 10px white;
+            }
+        }
+
+    .wrapper h1 {
+        font-size: 90px;
+        border-radius: 30px;
+        border: 1px solid transparent;
+        border-left: 2px solid rgba(255,255,255,.5);
+        border-top: 2px solid rgba(255,255,255,.8);
+        min-height: max-content;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        justify-self: center;
+        width: 90%;
+        align-self: center;
+        font-size: 5vw;
+        padding: 50px;
+        text-shadow: 0 0 20px rgb(52, 72, 230, 0.90);
+        animation: shineh1 both 10s infinite;
+    }
+
+
+    @keyframes shineh1{
+        50% {
+            text-shadow: 0 0 100px rgb(52, 72, 230, 1);
+        }
+    }
+    .wrapper h2 {
+        text-align: center;
+        text-shadow: 0 0 20px orange;
+    }
+=======
+
+@keyframes shine {
+    50% {
+        box-shadow: 0 10px 70px rgba(0,255,120,.3);
+        text-shadow: 0 0 10px white;
+    }
+}
+
+.wrapper h1 {
+    font-size: 90px;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    border-left: 2px solid rgba(255,255,255,.5);
+    border-top: 2px solid rgba(255,255,255,.8);
+    min-height: max-content;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    width: 90%;
+    align-self: center;
+    font-size: 5vw;
+    padding: 50px;
+    text-shadow: 0 0 20px rgb(52, 72, 230, 0.90);
+    animation: shineh1 both 10s infinite;
+}
+
+
+@keyframes shineh1 {
+    50% {
+        text-shadow: 0 0 100px rgb(52, 72, 230, 1);
+    }
+}
+
+.wrapper h2 {
+    text-align: center;
+    text-shadow: 0 0 20px orange;
+}
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+.permanent-marker-regular-200 {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 40px;
+    color: rgba(255,255,255,.7);
+<<<<<<< HEAD
+}}
+=======
+}
+
+}
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+
+.oswald-200 {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.jaro {
+    font-family: "Jaro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+.indie-flower-regular {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+<<<<<<< HEAD
+.wrapper text{
+=======
+.wrapper text {
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+    font-size: 20px;
+}
+
+
+<<<<<<< HEAD
+.inf-block{
+=======
+.inf-block {
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+    border-top: 3px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    margin-bottom: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 70%;
+    align-self: center;
+    backdrop-filter: blur(12px);
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)
+    .inf-block:hover {
+        transform: scale(1.2) translateX(-5%);
+    }
+
+@media(max-width: 700px) {
+    .inf-block {
+        width: 95%;
+    }
+
+    .wrapper h1 {
+        width: 95%;
+    }
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> a97574a (ФИКСИРУЙ БЛЯТЬ ЗАЕЬАЛ)

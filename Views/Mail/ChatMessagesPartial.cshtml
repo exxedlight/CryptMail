@@ -1,0 +1,23 @@
+﻿@model ChatModel;
+
+<ul class="chat-list" id="chat-list-id">
+    @for (int i = Model.messages.Count - 1; i >= 0; i--)
+    {
+        <li class="chat-list-element" style="align-self: @(Model.messages[i].senderLogin == Model.newMessage.PartnerLogin ? "flex-start" : "flex-end")">
+
+
+            <div class="li-sender-time" style="align-self: flex-end">
+                <p style="font-weight: 200; padding-right: 10px; font-size: 14px;">@Model.messages[i].messageSendTime.ToString("HH:mm dd.MM.yy")</p>
+            </div>
+
+
+            <p style="font-size: 10px;">
+                <text>@Model.messages[i].Theme</text>
+            </p>
+
+            <p style="font-size: 12px; word-wrap: break-word" class="messageText">
+                <text>@Model.messages[i].Message</text>
+            </p>
+        </li>
+    }
+</ul>

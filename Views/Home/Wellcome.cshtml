@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Wellcome";
+}
+
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+
+<div class="wrapper">
+
+    <h1 class="permanent-marker-regular">Wellcome to CRYPTMail!</h1>
+    <a class="butt" href="@Url.Action("Index", "Auth")">Enter your account</a>
+
+
+    <br />
+    <br />
+
+    <div class="inf-block">
+        <h2 class="permanent-marker-regular-200">What is this project about?</h2>
+
+        <text class="oswald-200">
+            This product was born out of an idea to update an outdated email design. Have you often found yourself thinking “It's so inconvenient!” or “How can you find anything here?”
+            CRYPTMail gives you convenience by serving your emails as a familiar chat room, keeping the subject attribute in each message.
+        </text>
+    </div>
+
+    <br />
+
+    <div class="inf-block">
+        <h2 class="permanent-marker-regular-200">Encryption is in your hands!</h2>
+
+        <text>
+            Now the security of your data is entirely up to you. Have you often had the need to write something over a secure communication channel? Our project allows you to choose the algorithm and key for each new message if you need to.
+        </text>
+    </div>
+
+    <br />
+
+    <div class="inf-block">
+        <h2 class="permanent-marker-regular-200">How does it work?</h2>
+
+        <text>
+            Using our system is very simple. You have three encryption algorithms to choose from and a field to enter the key. You choose the algorithm and optionally enter the key. It is assumed that the interlocutor knows the key to be entered for decryption. After sending, the message will arrive encrypted. To decrypt it, select the same algorithm and key that you entered when sending and press the “Decode” button. After that all messages will be “decrypted” by this algorithm and key.
+        </text>
+    </div>
+
+    <br />
+
+    <div class="inf-block">
+        <h2 class="permanent-marker-regular-200">The data is safe.</h2>
+
+        <text>
+            We do NOT store your keys and we do NOT remember which algorithms you chose. Even if your account falls into the wrong hands or gets hacked, the keys are stored in your head, it is technically impossible to get them from our side. Instead of encryption “on paper”, you can see our encryption directly.
+        </text>
+    </div>
+
+</div>

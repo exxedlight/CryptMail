@@ -1,0 +1,33 @@
+﻿<div class="wrapper" id="wrapper-id-in">
+    <form id="auth-in-form-id" asp-action="SignIn" method="post">
+        <h1>Login</h1>
+
+        <div class="input-box">
+            <input type="text" placeholder="Username" name="login" required autocomplete="off" />
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" name="password" required />
+            <i class='bx bx-lock'></i>
+        </div>
+
+        <div>
+            @if (TempData["AuthResult"] != null)
+            {
+                <p style="color: red">@TempData["AuthResult"]</p>
+                <br />
+            }
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+    </form>
+
+    <div class="register-link">
+        <p>
+            Don`t have an account?
+            <a id="register-button-id" style="cursor: pointer">Register</a>
+        </p>
+    </div>
+</div>
+

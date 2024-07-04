@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Authorization";
+}
+
+<div class="this-body">
+
+    @{
+        if (TempData["SignUpErr"] != null)
+        {
+            @await Html.PartialAsync("~/Views/Auth/SignUpPartial.cshtml")
+        }
+        else
+        {
+            @await Html.PartialAsync("~/Views/Auth/SignInPartial.cshtml")
+        }
+    }
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        //  клік на кнопку реєстрації змінює форму на реєстрацію
+        $('.this-body').on('click', '#register-button-id', function (event) { 
+            console.log('register button');
+            event.preventDefault();
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("getSignUpForm", "Auth")',
+                success: function (response) {
+                    $('#wrapper-id-in').replaceWith(response);
+                },
+                error: function () {
+                    console.error('AJAX error on Auth form swipe');
+                }
+            });
+        });
+
+        //  клік на кнопку створення аккаунту. 
+        //  При успіху перенаправляє на форму авторизації,
+        //  При невдачі виводить повідомлення
+        //  Керується через back-end
+        $('.this-body').on('submit', '#auth-up-form-id', function (event) {
+            console.log('submit registration');
+            event.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CreateUser", "Auth")',
+                data: {
+                    username: $('input[name="username"]').val(),
+                    pass1: $('input[name="pass1"]').val(),
+                    pass2: $('input[name="pass2"]').val()
+                },
+                success: function (response) {
+                    $('.wrapper').replaceWith(response);
+                },
+                error: function() {
+                    console.error('AJAX SingUp error');
+                }
+            });
+        });
+
+    });
+
+</script>

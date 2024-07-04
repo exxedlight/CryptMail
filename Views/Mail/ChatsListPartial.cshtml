@@ -1,0 +1,38 @@
+﻿@model UserMessageModel
+
+@if (Model.isAnyChat)
+{
+    <ul class="chat-list" id="chat-list-id">
+        @foreach(MessageModel item in Model.messagesList)
+        {
+            <li class="chat-list-element" onclick="location.href='@Url.Action("OpenChat", "Mail", new { login = item.PartnerLogin })'">
+
+                <div class="li-sender-time">
+                    <p style="font-weight: bold; color: rgba(120,120,180, 1); font-size: 16px;">@item.PartnerLogin</p>
+                    <p style="font-weight: 200; text-decoration: underline; padding-right: 10px; font-size: 14px;">@item.messageSendTime.ToString("dd.MM.yy HH:mm")</p>
+                </div>
+
+                <p style="font-size: 14px;">
+                    <text>Theme: @item.Theme</text>
+                </p>
+
+                <p style="font-size: 12px;">
+                @if(item.Message.Length > 50)
+                {
+                    <text>Text : @item.Message.Substring(0,50)...</text>
+                }
+                else
+                {
+                    <text>Text: @item.Message</text>
+                }
+                </p>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <div class="no-messages-p" id="no-mess-p">
+        <p>No messages yet!</p>
+    </div>
+}

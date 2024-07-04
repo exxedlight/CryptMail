@@ -1,0 +1,106 @@
+﻿@model ChatModel;
+@{
+    ViewData["Title"] = @Model.newMessage.PartnerLogin;
+}
+
+<link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+
+<div class="chat-wrapper">
+    <div class="chatHead">
+        <!-- header -->
+        <p><a onclick="location.href='@Url.Action("Index", "Mail")'" style="cursor: pointer">Back</a></p>
+        <p>Chat with user: @Model.newMessage.PartnerLogin</p>
+    </div>
+
+
+
+    <div class="messageList" id="messageListId">
+        <!-- message list -->
+        @await Html.PartialAsync("~/Views/Mail/ChatMessagesPartial.cshtml", Model)
+    </div>
+
+
+    <div class="myNewMessage">
+        <!-- new message field and buttons -->
+        @await Html.PartialAsync("~/Views/Mail/NewMessageFormPartial.cshtml", Model.newMessage)
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Після завантаження сторінки, прокрутити повідомлення у самий низ
+        $('.chat-list').each(function () {
+            $(this).scrollTop($(this)[0].scrollHeight);
+        });
+
+        //  прокрутка списку повідомлень до верх границі
+        $('.chat-list').on('scroll', function () {
+            
+            if ($(this).scrollTop() === 0) {
+                
+                console.log('Контейнер прокручен вверх!');
+
+                // отримати наступні повідомлення та додати їх на стр (WIP)
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("getNextPage", "YourControllerName")',
+                    data: modelData,
+                    success: function (response, status, xhr) {
+                        var decodedMessages = response.chatModel.messages;
+
+
+                        for (var i = decodedMessages.length - 1; i >= 0; i--) {
+                            var message = decodedMessages[i];
+
+                            var messageHtml = '<li class="chat-list-element">';
+                            messageHtml += '<p>' + message.Message + '</p>';
+                            messageHtml += '</li>';
+
+                            $('.chat-list').prepend(messageHtml);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+
+
+
+
+            }
+        });
+    });
+
+    //  кнопка декодування
+    $('#decrButtonId').click(function () {
+        event.preventDefault();
+
+        var modelData = {
+            newMessage: {
+                alg: $('#alg').val(),
+                key: $('input[name="key"]').val(),
+                PartnerLogin: @Json.Serialize(Model.newMessage.PartnerLogin)
+            },
+            messages: @Json.Serialize(Model.messages),
+            currentPage: @Json.Serialize(Model.currentPage)
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DecodeMessages", "Mail")',
+            data: modelData,
+            success: function (response, status, xhr) {
+                var decodedMessages = response.chatModel.messages;
+
+                var elements = $('.messageText').get();
+                $(elements.reverse()).each(function (index) {
+                    $(this).text(decodedMessages[index].message);
+                });
+                
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+            }
+        });
+    });
+</script>

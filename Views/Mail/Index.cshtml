@@ -1,0 +1,129 @@
+﻿@model UserMessageModel;
+@{
+    ViewData["Title"] = "Mail";
+}
+
+<link rel="stylesheet" href="~/css/mail.css" asp-append-version="true" />
+
+<div class="this-body">
+
+    <p class="username">@Model.userModel.login&#64;crypt.com</p>
+
+    <div class="wrapper">
+
+        <div class="btns-block">
+            <button class="mail-button-main" id="write-button"><p>WRITE &#9998;</p></button>
+
+            <div class="func-control">
+
+                <button class="mail-button"><p>&#9901; All</p></button>
+                <button class="mail-button"><p>&#9737; Unreaded</p></button>
+                <button class="mail-button"><p>&#9734; Important</p></button>
+                <button class="mail-button"><p>&#10008; Blocked</p></button>
+
+            </div>
+        </div>
+
+
+        <div class="chats-list-container">
+
+            <!-- CHATS LIST -->
+            <div id="chats-container"></div>
+
+
+            <!-- NEW MESSAGE FORM -->
+            <div class="new-message-block" id="for-new-message">
+                @await Html.PartialAsync("~/Views/Mail/NewMessageFormPartial.cshtml", Model.messageModel)
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    let submitting = false;
+
+    function updateChats() {
+        var userMessageModelJson = JSON.stringify(@Html.Raw(Json.Serialize(Model)));
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("getChats", "Mail")',
+            contentType: 'application/json',
+            data: userMessageModelJson,
+            success: function (response, status, xhr) {
+                $('#chats-container').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.log('AJAX Error:', status, error);
+                console.log('Response:', xhr.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        //  виведодити / приховати форму нового повідомлення
+        $('#write-button').click(function () {
+
+            var newMessageDiv = $('#for-new-message');
+            var chatsContainer = $('#chats-container');
+            var chatList = $('#chat-list-id');
+            var noMessP = $('#no-mess-p');
+
+            if (!newMessageDiv.is(':visible')) {
+                newMessageDiv.css('display', 'flex');
+                $(this).html('<p style="color: rgba(15, 93, 233, .8)">CLOSE &#10096;</p>');
+                if (window.innerWidth <= 700) {
+                    chatsContainer.css('height', '400px');
+                } else {
+                    chatsContainer.css('height', '47%');
+                }
+            } else {
+                newMessageDiv.hide();
+                $(this).html('<p>WRITE &#9998;</p>');
+                chatsContainer.css('height', '100%');
+            }
+            updateChats();
+        });
+
+
+
+        //  обробка відправлення нового повідомлення
+        $('#new-message-form-id').submit(function (event) {
+            if (submitting) return false;
+            submitting = true;
+
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("sendNewMessage", "Mail")',
+                data: formData,
+                success: function (response, status, xhr) {
+                    $('#new-message-form-id').html(response);
+
+                    if (xhr.status == 200) {    //  вдала відправка, очищення полів на стороні клієнта
+                        $('.new-message-text-content').val('');
+                        $('.new-message-reciever-title').val('');
+                        updateChats();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                },
+                complete: function () {
+                    submitting = false;
+                }
+            });
+        });
+
+        updateChats();
+    });
+
+</script>
